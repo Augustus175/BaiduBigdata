@@ -17,7 +17,7 @@ public class TxtReader {
             // read file content from file
             StringBuffer sb = new StringBuffer("");
 
-            FileReader reader = new FileReader(System.getProperty("user.dir") + File.separator + "sourcefilr" + File.separator + "data_train.txt");
+            FileReader reader = new FileReader(System.getProperty("user.dir") + File.separator + "sourcefile" + File.separator + "data_train.txt");
             BufferedReader br = new BufferedReader(reader);
 
             String str = null;
