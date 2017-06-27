@@ -1,9 +1,6 @@
 package com.baidu.ScopeSKL.datacollector;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -15,15 +12,13 @@ public class TxtReader {
     public static void main(String[] args) {
         ArrayList<String> row = new ArrayList<String>();
         ArrayList<String> url = new ArrayList<String>();
-        Map<String,Integer> repeatmap = new HashMap<String, Integer>();
+        Map<String, Integer> repeatmap = new HashMap<String, Integer>();
         try {
             // read file content from file
             StringBuffer sb = new StringBuffer("");
 
-//            FileReader reader = new FileReader("L:"+ File.separator+"Test.txt");
-//            FileReader reader = new FileReader("E:\\高铁项目\\高铁数据\\轴温数据\\轴温\\典型轴温数据\\20150711-04-zs_36电机定子报警.txt");
-            FileReader reader = new FileReader("/home/zhangzhibo/IdeaProjects/BaiduBigdata/sourcefilr/data_train.txt");
-                    BufferedReader br = new BufferedReader(reader);
+            FileReader reader = new FileReader(System.getProperty("user.dir") + File.separator + "sourcefilr" + File.separator + "data_train.txt");
+            BufferedReader br = new BufferedReader(reader);
 
             String str = null;
 
@@ -43,11 +38,11 @@ public class TxtReader {
                 row) {
             String u = str.split(" ")[1];
             url.add(u);
-            if (repeatmap.containsKey(u)){
+            if (repeatmap.containsKey(u)) {
                 int t = repeatmap.get(u);
-                repeatmap.put(u,t+1);
-            }else{
-                repeatmap.put(u,1);
+                repeatmap.put(u, t + 1);
+            } else {
+                repeatmap.put(u, 1);
             }
         }
         System.out.println(url.size());
@@ -67,10 +62,10 @@ public class TxtReader {
         //}
         System.out.println(repeatmap.size());
         Iterator it = repeatmap.entrySet().iterator();
-        while (it.hasNext()){
+        while (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            if (Integer.parseInt(entry.getValue().toString())!=1)
-            System.out.println(entry.getKey()+"  ===============================>  "+entry.getValue());
+            if (Integer.parseInt(entry.getValue().toString()) != 1)
+                System.out.println(entry.getKey() + "  ===============================>  " + entry.getValue());
         }
     }
 }
